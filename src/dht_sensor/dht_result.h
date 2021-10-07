@@ -1,7 +1,8 @@
 
-
 #ifndef DHT_RESULT_H_
 #define DHT_RESULT_H_
+
+#include <utility>
 
 struct DHTResult
 {
@@ -9,13 +10,21 @@ struct DHTResult
 
     DHTResult() : m_humidity(0.0F), m_temperature(0.0F)
     {
-
     }
 
-    DHTResult(float humidity, float temperature)
-    : m_humidity(humidity), m_temperature(temperature)
+    DHTResult(value_type &&humidity, value_type &&temperature)
+        : m_humidity(humidity), m_temperature(temperature)
     {
+    }
 
+    value_type temperature() const
+    {
+        return m_temperature;
+    }
+
+    value_type humidity() const
+    {
+        return m_humidity;
     }
 
     value_type m_humidity;
