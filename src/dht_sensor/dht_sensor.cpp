@@ -7,7 +7,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#ifdef __ARM_ARCH
 #include <wiringPi.h>
+#endif // __ARM_ARCH
 
 int data[5] = {0, 0, 0, 0, 0};
 
@@ -16,14 +18,18 @@ namespace rpi::dht
 
 DHTSensor::DHTSensor() : m_config()
 {
+
+#ifdef __ARM_ARCH
     if (wiringPiSetup() == -1)
     {
         throw std::runtime_error("Couldn't setup WiringPi.");
     }
+#endif // __ARM_ARCH
 }
 
 DHTSensor::measurement_result_type DHTSensor::measure()
 {
+#ifdef __ARM_ARCH
     uint8_t last_state = HIGH;
     uint8_t counter = 0;
     uint8_t j = 0, i;
@@ -97,9 +103,14 @@ DHTSensor::measurement_result_type DHTSensor::measure()
     else
     {
         // measured data not good
-        return std::nullopt;
+        return ::std::nullopt;
     }
 
+#else // __ARM_ARCH
+
+    return ::std::nullopt;
+
+#endif // __ARM_ARCH
     // always return false on non-arm-machines since there is no HW installed
     // return std::nullopt;
 }
