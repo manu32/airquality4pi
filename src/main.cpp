@@ -1,4 +1,5 @@
 
+#include "db/db_manager.h"
 #include "dht_sensor/dht_sensor.h"
 
 #include <iostream>
@@ -7,22 +8,18 @@
 int main(int argc, char *argv[])
 {
     std::cout << "setup done" << std::endl;
+    std::string database_dir =
+        "../../../../playground/sqlite_example/dhtdata.db";
+    ::std::unique_ptr<DBManager> database =
+        ::std::make_unique<DBManager>(database_dir);
 
-    rpi::dht::DHTSensor dht;
-
-    for (auto count = 0; count < 100U; ++count)
+    try
     {
-        auto result = dht.measure();
-
-        if (result.has_value())
-        {
-            std::cout << "temp: " << result.value().temperature()
-                      << "°C ,humidity: " << result.value().humidity() << " %"
-                      << std::endl;
-            break;
-        }
-        std::cout << count << std::endl;
-        std::this_thread::sleep_for(std::chrono::milliseconds(1000));
+        database->open_db();
+    }
+    catch(::std::runtime_error e)
+    {
+        std::cout << e.what() << std::endl;
     }
 
     std::cout << "finished dht sensor example" << std::endl;
