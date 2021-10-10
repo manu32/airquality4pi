@@ -42,17 +42,18 @@ struct DHTConfiguration
 
 class DHTSensor
 {
+  public:
     using measurement_result_type = ::std::optional<DHTResult>;
     using config_type = DHTConfiguration;
 
-    config_type m_config;
-    int m_registers[5];
-
-  public:
     DHTSensor();
 
     bool update_config(config_type &config);
     measurement_result_type measure();
+
+  private:
+    config_type m_config;
+    int m_registers[5];
 };
 
 }; // namespace rpi::dht
