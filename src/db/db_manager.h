@@ -4,9 +4,9 @@
 
 #include <exception>
 #include <filesystem>
+#include <iostream>
 #include <sqlite3.h>
 #include <string.h>
-#include <iostream>
 
 static int callback(void *NotUsed, int argc, char **argv, char **azColName)
 {
@@ -33,8 +33,8 @@ class DBManager
 
     ~DBManager()
     {
-        std::cout << "close database"<< std::endl;
-        if(is_open())
+        std::cout << "close database" << std::endl;
+        if (is_open())
         {
             close_db();
         }
@@ -67,16 +67,15 @@ class DBManager
         }
         else
         {
-             throw std::runtime_error("Could not find database file.");
+            throw std::runtime_error("Could not find database file.");
         }
-
-
     }
 
-    bool execute(const std::string& sql_command)
+    bool execute(const std::string &sql_command)
     {
         char *zErrMsg = 0;
-        auto success = sqlite3_exec(m_db, sql_command.c_str(), callback, 0, &zErrMsg);
+        auto success =
+            sqlite3_exec(m_db, sql_command.c_str(), callback, 0, &zErrMsg);
 
         return success == SQLITE_OK;
     }
