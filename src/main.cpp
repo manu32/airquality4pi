@@ -1,27 +1,19 @@
 
 #include "db/db_manager.h"
 #include "dht_sensor/dht_sensor.h"
+#include "db/dht_sql_builder.h"
 
 #include <iostream>
 #include <thread>
 
 int main(int argc, char *argv[])
 {
-    std::cout << "setup done" << std::endl;
-    std::string database_dir =
-        "../../../../playground/sqlite_example/dhtdata.db";
-    ::std::unique_ptr<DBManager> database =
-        ::std::make_unique<DBManager>(database_dir);
 
-    try
-    {
-        database->open_db();
-    }
-    catch(::std::runtime_error e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+    DHTReadingSQLBuilder sql;
 
-    std::cout << "finished dht sensor example" << std::endl;
+    std::string command =
+        sql.insert_temperature(32.0F).insert_humidity(85.0F).now().into("dhtreadings");
+
+    std::cout << command << std::endl;
     return 0;
 }
