@@ -102,6 +102,10 @@ class SQLInsertBuilder
         };
     }
 
+    virtual ~SQLInsertBuilder()
+    {
+    }
+
     SQLInsertBuilder &into(const std::string &table)
     {
         m_table = table;
