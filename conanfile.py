@@ -13,7 +13,7 @@ class ConanRecipe(ConanFile):
     generators = "cmake"
     
     def build_requirements(self):
-        self.build_requires("gtest/1.8.1@bincrafters/stable")
+        self.build_requires("gtest/1.8.1")
         self.build_requires("sqlite3/3.36.0")
         
     def build(self):

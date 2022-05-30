@@ -3,7 +3,7 @@
 #define DB_MANAGER_H_
 
 #include <exception>
-#include <filesystem>
+//#include <filesystem>
 #include <iostream>
 #include <sqlite3.h>
 #include <string.h>
@@ -47,7 +47,8 @@ class DBManager
 
     bool db_exists()
     {
-        return ::std::filesystem::exists(m_filename);
+        return true;
+        //return ::std::filesystem::exists(m_filename);
     }
 
     void open_db()
