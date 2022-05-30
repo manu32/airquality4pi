@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <style>
+        table, th, td{
+            border: 1px solid black
+        }
+        th{
+            font-weight: bold;
+        }
+    </style>
+<head>
+    <meta charset="UTF-8">
+    <title>airquality4pi</title>
+</head>
+<body>
+    <h1>Welcome to airquality4pi!</h1>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Time</th>
+            <th>Temperature</th>
+            <th>Humidity</th>
+        </tr>
+        {% for dict_item in db %}
+        <tr>
+            {% for key, value in dict_item.items() %}
+            <td>{{value}}</td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
+
+    <a href={{ url_for('hello_plants') }}>
+        <button type="button">
+            Homepage
+        </button>
+    </a>
+</body>
+</html>
