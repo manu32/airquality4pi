@@ -1,12 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends "base.html" %}
 
-<head>
-    <meta charset="UTF-8">
-    <title>plant-station</title>
-</head>
-
-<body>
+{% block title %} Plants {% endblock %}
+{% block content %}
     <h1>Note</h1>
     <form method="post">
         <p>Title
@@ -16,7 +11,4 @@
             <input type="text" name="description">
         </p>
         <button type="submit">Submit</button>
-    </form>
-</body>
-
-</html>
+{% endblock %}

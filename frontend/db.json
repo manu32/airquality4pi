@@ -1,43 +1,43 @@
 [
     {
         "id": 1,
-        "timestamp": "2022-05-29_220000",
-        "temperature": 23.00,
+        "timestamp": "2022-05-26_220000",
+        "temperature": 17.00,
         "humidity": 54.00
     },
     {
         "id": 2,
-        "timestamp": "2022-05-29_220000",
-        "temperature": 23.00,
+        "timestamp": "2022-05-27_220000",
+        "temperature": 28.00,
         "humidity": 54.00
     },
     {
         "id": 3,
-        "timestamp": "2022-05-29_220000",
-        "temperature": 23.00,
+        "timestamp": "2022-05-28_220000",
+        "temperature": 25.00,
         "humidity": 54.00
     },
     {
         "id": 5,
         "timestamp": "2022-05-29_220000",
-        "temperature": 23.00,
+        "temperature": 28.00,
         "humidity": 54.00
     },
     {
         "id": 6,
-        "timestamp": "2022-05-29_220000",
+        "timestamp": "2022-05-30_220000",
         "temperature": 23.00,
         "humidity": 54.00
     },
     {
         "id": 7,
-        "timestamp": "2022-05-29_220000",
+        "timestamp": "2022-05-31_220000",
         "temperature": 23.00,
         "humidity": 54.00
     },
     {
         "id": 8,
-        "timestamp": "2022-05-29_220000",
+        "timestamp": "2022-06-01_220000",
         "temperature": 23.00,
         "humidity": 54.00
     }

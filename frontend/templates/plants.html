@@ -1,39 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
-    <style>
-        table, th, td{
-            border: 1px solid black
-        }
-        th{
-            font-weight: bold;
-        }
-    </style>
+
 <head>
     <meta charset="UTF-8">
-    <title>airquality4pi</title>
+    <title>Measurements</title>
+    <link rel="stylesheet" href={{url_for('static', filename='style.css' )}}>
 </head>
-<body>
-    <h1>Welcome to airquality4pi!</h1>
-    <table>
-        <tr>
-            <th>ID</th>
-            <th>Time</th>
-            <th>Temperature</th>
-            <th>Humidity</th>
-        </tr>
-        {% for dict_item in db %}
-        <tr>
-            {% for key, value in dict_item.items() %}
-            <td>{{value}}</td>
-            {% endfor %}
-        </tr>
-        {% endfor %}
-    </table>
 
-    <a href={{ url_for('hello_plants') }}>
-        <button type="button">
-            Homepage
-        </button>
-    </a>
+<body>
+    <h1>Hello Plotly (but not Dash)</h1>
+
+    <form method="post">
+        <p>
+            from
+            <input type="text" name="start_date">
+        </p>
+        <p>
+            to
+            <input type="text" name="end_date">
+        </p>
+        <p>
+            <button type="submit">Go</button>
+        </p>
+    {% if render_graph %}
+    <div id='chart' class='chart' ”></div>
+    {% endif %}
 </body>
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script type='text/javascript'>
+    var graphs = {{ graph | safe}};
+    Plotly.plot('chart', graphs, {});
+</script>
+
 </html>
