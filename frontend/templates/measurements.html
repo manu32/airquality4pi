@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Measurements</title>
+    <link rel="stylesheet" href={{url_for('static', filename='style.css' )}}>
+    <style>
+        .myDiv {
+            border: 5px outset red;
+            background-color: lightblue;
+            text-align: center;
+        }
+
+        #container {
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        #container .row {
+            /* Access rows */
+        }
+
+        #container .row .col {
+            float: left;
+            width: 50%;
+        }
+
+        /* Equivalent of #column-1*/
+        #container .row .col.column-1 {}
+
+        /* Equivalent of #column-2 */
+        #container .row .col.column-2 {}
+
+        /* Equivalent of #column-1*/
+        #container .row .col.column-3 {}
+    </style>
+</head>
+
+<body>
+    <h1>Measurements</h1>
+    <div>
+        <div class="container">
+
+            <form method="post">
+                <button type="submit" name="previous" value="prev">
+                    &loarr;</button>
+
+                {{ selected_date }}
+
+                <button type="submit" name="next" value='next' {% if not less_than_today %} disabled {% endif
+                    %}>&roarr;</button>
+
+
+        </div>
+        {% if render_graph %}
+        <div id='chart' class='chart' ”></div>
+        {% endif %}
+        <p>
+            <a href={{ url_for('hello_plants') }}>
+                <button type="button">Home</button>
+            </a>
+        </p>
+</body>
+<script src='https://cdn.plot.ly/plotly-latest.min.js'></script>
+<script type='text/javascript'>
+    var graphs = {{ graph | safe}};
+    Plotly.plot('chart', graphs, {});
+</script>
+
+</html>
